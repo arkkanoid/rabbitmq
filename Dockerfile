@@ -29,7 +29,7 @@ ENV RABBITMQ_LOGS=- RABBITMQ_SASL_LOGS=-
 RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys F78372A06FF50C80464FC1B4F7B8CEA6056E8E56
 RUN echo 'deb http://www.rabbitmq.com/debian testing main' > /etc/apt/sources.list.d/rabbitmq.list
 
-ENV RABBITMQ_VERSION 3.6.0-1
+ENV RABBITMQ_VERSION 3.6.0
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		erlang erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap \
@@ -50,5 +50,5 @@ RUN ln -sf /var/lib/rabbitmq/.erlang.cookie /root/
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-EXPOSE 4369 5671 5672 25672
+EXPOSE 4369 5671 5672 25672 15671 15672
 CMD ["rabbitmq-server"]
